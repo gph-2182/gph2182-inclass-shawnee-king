@@ -41,7 +41,7 @@ colSums(icu_admissions)
 # 4. Extract admissions for Tuesday across all sites as a named vector
 tue_admissions <- icu_admissions["Tue",]
 # 5. Extract all entries in the matrix where daily admissions were >= 20
-greater_20 <- icu_admissions[icu_admissions > 20]
+greater_20 <- icu_admissions[icu_admissions >= 20]
 ```
 
 # Exercise 2: Clinical Trial Patient Record List (Cycle 2)
@@ -52,17 +52,26 @@ greater_20 <- icu_admissions[icu_admissions > 20]
 #    with: subject_id ("SUBJ-1049"), treatment_arm ("High_Dose"), age (58),
 #    viral_loads (c(45000, 12000, 850, 40)), side_effects (c("Headache", "Fatigue")),
 #    and site_info (list with city="New York", hospital="Bellevue")
-
+patient_profile <- list(
+  subjext_id = "SUBJ-1049",
+  treatment_arm = "High_Dose",
+  age = 58,
+  viral_loads = c(45000, 12000, 850, 40),
+  side_effects = c("Headache", "Fatigue"),
+  site_info = list(city = "New York", hospital = "Bellevue")
+)
 
 # 2. Extract the viral_loads vector using [[ ]] and compute the percentage reduction:
 #    ((baseline - final) / baseline) * 100
-
+viral_loads <- patient_profile[["viral_loads"]]
+percent_reduction <- ((viral_loads[1] - viral_loads[4])/viral_loads[1]) * 100
+percent_reduction
 
 # 3. Access the nested hospital name using $
-
+patient_profile$site_info$hospital
 
 # 4. Add a new element named status set to "Completed"
-
+patient_profile$status_set <- "Completed"
 ```
 
 # Exercise 3: Patient Cohort Data Frame & Subsetting (Cycle 3)
