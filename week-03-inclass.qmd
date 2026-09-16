@@ -90,16 +90,17 @@ cohort_df <- data.frame(
 )
 
 # 1. Add a new column pulse_pressure = sbp - dbp
-
+cohort_df$pulse_pressure <- cohort_df$sbp - cohort_df$dbp
 
 # 2. Add a boolean column hypertensive = (sbp >= 140 | dbp >= 90)
-
-
+cohort_df$hypertensive <- cohort_df$sbp >= 140 | cohort_df$dbp >= 90
 # 3. Filter all patients who are hypertensive AND smokers
-
-
+filtered_patients <- cohort_df[cohort_df$hypertensive == TRUE & cohort_df$smoker == TRUE,]
 # 4. Compute the average BMI of hypertensive patients vs non-hypertensive patients
-
+hypertensive <- cohort_df[cohort_df$hypertensive == TRUE,]
+non_hypertensive <- cohort_df[cohort_df$hypertensive == FALSE,]
+mean(hypertensive$bmi)
+mean(non_hypertensive$bmi)
 ```
 
 # Exercise 4: Reading CSV Data & Type Verification (Cycle 4 + AI Corner)
