@@ -119,13 +119,13 @@ P5,39,-99,Yes"
 writeLines(sample_csv, "test_cohort.csv")
 
 # 2. Read the CSV treating Unknown, Refused, and -99 as NA
-
+test_cohort <- read_csv("test_cohort.csv", na = c("Unknown", "Refused", "-99"))
 
 # 3. Verify that cholesterol is recognized as numeric (<dbl>)
-
+spec(test_cohort)
 
 # 4. Compute the mean cholesterol among valid cases
-
+mean(test_cohort$cholesterol, na.rm = TRUE)
 ```
 
 # 📝 Quiz 1 (4:20–4:40 PM)
